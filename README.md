@@ -1,5 +1,15 @@
 # 🛡️ GRC Risk Assessment Tool
 
+## 🌐 Live Demo
+**Frontend**: [https://grc-filter-task-chandril-das.vercel.app/](https://grc-filter-task-chandril-das.vercel.app/)
+
+## 📸 Screenshots
+### Dashboard & Metrics
+![Dashboard](screenshots/dashboard.png)
+
+### Risk Heatmap
+![Heatmap](screenshots/heatmap.png)
+
 ## Overview
 This project is a full-stack Risk Assessment Tool built as part of the assignment to demonstrate a practical Governance, Risk, and Compliance (GRC) use case.
 The application allows users to identify risks, calculate risk scores, classify risk levels, and visualize risks using a dashboard and a risk heatmap to support data-driven decision making.
