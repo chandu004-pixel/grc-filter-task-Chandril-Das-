@@ -129,6 +129,7 @@ npm run dev
 Frontend runs on: `http://localhost:5173`
 
 ## Assumptions & Limitations
+- The application is intended to be run locally as per assignment requirements. Deployment was not required.
 - No authentication or user roles are implemented
 - SQLite is used for simplicity and local storage
 - The application is intended for demonstration purposes, not production use
