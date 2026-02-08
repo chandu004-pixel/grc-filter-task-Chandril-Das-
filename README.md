@@ -168,6 +168,24 @@ This tool aligns with GRC principles by:
 - Supporting monitoring through dashboards
 - Enabling informed decision-making via visual analysis
 
+## Development Notes & Challenges
+
+### 🚀 Challenges Faced
+- **Real-time Heatmap Sync**: Ensuring the 5x5 grid accurately reflected new risk entries without manual refreshes. This was handled by centralizing state in `App.jsx` and passing a refresh callback to the form.
+- **Async API Synchronization**: Managed complex asynchronous states using `useEffect` and `loading` flags to prevent race conditions during data fetching and filtering.
+- **Dynamic Grid Alignment**: Reversing the Likelihood axis (5 at top, 1 at bottom) while maintaining a standard row-column layout required custom CSS grid logic.
+
+### 🧪 Edge Cases Handled
+- **Boundary Validation**: Form prevents Likelihood/Impact values outside the 1–5 range.
+- **Empty States**: Both the Risk Register and Heatmap display graceful placeholders when no data is available.
+- **Persistence**: Using SQLite ensures that risks aren't lost when the development server restarts (local).
+- **ID Sequence**: Implemented a "virtual ID" in the dashboard so that if a risk is deleted, the table IDs remain sequential (1, 2, 3...) for user clarity.
+
+### 🌟 Bonus Features
+- **CSV Export**: Added a one-click export to download the current risk register for external analysis.
+- **Mitigation Hints**: Automatically provides NIST-aligned strategy suggestions based on the calculated risk level.
+- **Responsive Layout**: Designed a layout that gracefully collapses into a single column on mobile devices.
+
 ## Conclusion
 The Risk Assessment Tool successfully fulfills all assignment deliverables by providing:
 - Correct risk calculations
