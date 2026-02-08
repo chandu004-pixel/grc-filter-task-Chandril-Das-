@@ -1,16 +1,38 @@
-# React + Vite
+# 🛡️ GRC Risk Assessment - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React-based frontend for the GRC Risk Assessment Tool.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
+- **Interactive Risk Form**: Real-time score calculation and severity preview.
+- **Dynamic Dashboard**: Sortable, filterable risk register with sequential IDs.
+- **Risk Heatmap**: 5x5 visualizer (Likelihood vs. Impact) with interactive tooltips.
+- **CSV Export**: Download current risk data for external reporting.
+- **Responsive Design**: Clean, modern UI that works on multiple screen sizes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technology Stack
+- **Framework**: React 18
+- **Build Tool**: Vite
+- **Styling**: Vanilla CSS (Custom Design System)
+- **Icons**: Standard Unicode Support
 
-## React Compiler
+## 🏃 How to Run Locally
+1. Ensure the **Backend** is running at `http://localhost:8000`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser to: `http://localhost:5173`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Component Structure
+- `App.jsx`: Main orchestration and state management.
+- `RiskForm.jsx`: Handles data entry and real-time validation.
+- `Dashboard.jsx`: Displays the risk register and management actions (Edit/Delete).
+- `Heatmap.jsx`: Visualizes risk distribution on a color-coded grid.
+- `index.css`: Contains the global design system, color tokens, and layout styles.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+*Developed for the GRC Risk Assessment Assignment.*
