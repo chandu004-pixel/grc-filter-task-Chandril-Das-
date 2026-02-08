@@ -1,75 +1,151 @@
-# GRC Risk Assessment Tool
+# 🛡️ GRC Risk Assessment Tool
 
-A simple yet powerful web application for evaluating organizational risks using a Likelihood × Impact matrix, designed for Governance, Risk, and Compliance (GRC) use cases.
+## Overview
+This project is a full-stack Risk Assessment Tool built as part of the assignment to demonstrate a practical Governance, Risk, and Compliance (GRC) use case.
+The application allows users to identify risks, calculate risk scores, classify risk levels, and visualize risks using a dashboard and a risk heatmap to support data-driven decision making.
 
-## Features
+The focus of this project is correct risk logic, clean implementation, and usability, rather than advanced UI or over-engineered architecture.
 
-- **Risk Assessment Form**: Input asset details, threats, and estimate likelihood/impact.
-- **Real-time Preview**: Instantly see the calculated Risk Score and Level before submitting.
-- **Risk Heatmap**: A 5×5 visualization mapping Likelihood vs. Impact with severity-based coloring.
-- **Dynamic Dashboard**: Sortable and filterable table of all recorded risks.
-- **Summary Metrics**: Overview of total risks, high-priority counts, and average scores.
-- **CSV Export**: Download the risk register for external reporting.
-- **Mitigation Guidance**: Automated suggestions based on NIST-aligned risk levels.
+## Problem Statement
+Organizations face multiple risks related to assets, threats, and vulnerabilities.
+This tool helps:
+- Assess risks using Likelihood × Impact
+- Categorize risks into severity levels
+- Maintain a risk register
+- Visualize risk concentration using a heatmap
 
-## How Risk Scoring Works
+This aligns with standard GRC practices such as risk identification, assessment, monitoring, and reporting.
 
-This tool follows the standard **Likelihood × Impact** model:
-
-1. **Likelihood (1–5)**: How probable is the threat event?
-2. **Impact (1–5)**: How severe is the damage if the event occurs?
-3. **Risk Score**: Likelihood × Impact (Range: 1–25)
-
-### Risk Level Mapping
-| Score Range | Level | Action/Mitigation |
-|-------------|-------|-------------------|
-| 1–5 | **Low** | Accept / Monitor |
-| 6–12 | **Medium** | Plan mitigation within 6 months |
-| 13–18 | **High** | Prioritize action + compensating controls |
-| 19–25 | **Critical** | Immediate mitigation + executive reporting |
-
-## Tech Stack
-
+## Technology Stack
+The project intentionally uses simple, user-friendly technologies:
 - **Backend**: FastAPI (Python)
-- **Database**: SQLite (local `risks.db`)
-- **Frontend**: React (JavaScript) + Vite
-- **Styling**: Vanilla CSS (Custom Design System)
+- **Database**: SQLite (local, file-based)
+- **Frontend**: React (JavaScript)
+- **Communication**: REST APIs (JSON)
 
-## Setup and Installation
+These technologies were chosen for clarity, ease of understanding, and rapid development.
 
-### Prerequisites
-- Python 3.8+
-- Node.js 16+
-- npm
+## Functional Features (As per Assignment)
 
-### 1. Backend Setup
+### 1. Risk Input & Assessment
+Users can input:
+- Asset Name
+- Threat Description
+- Likelihood (1–5)
+- Impact (1–5)
+
+The system:
+- Validates Likelihood and Impact values
+- Calculates **Risk Score = Likelihood × Impact**
+- Displays a real-time preview of:
+  - Risk Score
+  - Risk Level
+
+### 2. Risk Classification
+Risk levels are categorized as:
+
+| Score Range | Risk Level |
+| :--- | :--- |
+| 1 – 5 | Low |
+| 6 – 12 | Medium |
+| 13 – 18 | High |
+| 19 – 25 | Critical |
+
+This classification is applied consistently across the dashboard and heatmap.
+
+### 3. Backend APIs
+The FastAPI backend provides APIs to:
+- Submit a new risk assessment
+- Retrieve all risk records
+- Filter risks by risk level
+
+Each stored risk includes: Asset, Threat, Likelihood, Impact, Risk Score, and Risk Level. Data is stored persistently using SQLite.
+
+### 4. Risk Dashboard
+The dashboard provides:
+- A Risk Register table showing all assessed risks
+- Columns: ID, Asset, Threat, Likelihood, Impact, Score, Level
+- Sorting by score
+- Filtering by risk level
+- Actions such as edit and delete
+
+This allows continuous monitoring and management of risks.
+
+### 5. Risk Summary Metrics
+At the top of the dashboard, the application displays:
+- Total number of risks
+- Count of High + Critical risks
+- Average risk score
+
+These metrics provide a quick overview of the organization’s overall risk posture.
+
+### 6. Risk Heatmap Visualization
+A 5 × 5 Risk Heatmap is implemented to visually represent risk concentration.
+- **X-axis**: Impact (1 → 5)
+- **Y-axis**: Likelihood (5 → 1)
+- Each cell represents a Likelihood–Impact combination
+- Cells display the count of risks
+- Color-coded based on severity:
+  - Green → Low
+  - Yellow → Medium
+  - Orange → High
+  - Red → Critical
+
+The heatmap helps identify high-risk areas that require immediate attention.
+
+## Project Structure
+```text
+project-root/
+├── backend/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── risks.db
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── RiskForm.jsx
+│   │   ├── Dashboard.jsx
+│   │   └── Heatmap.jsx
+│   └── package.json
+└── README.md
+```
+
+## How to Run the Project
+
+### Backend
 ```bash
 cd backend
 pip install -r requirements.txt
-python app.py
+python3 app.py
 ```
-The API will run on `http://localhost:8000`.
+Backend runs on: `http://localhost:8000`
 
-### 2. Frontend Setup
+### Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The application will be available at `http://localhost:5173`.
+Frontend runs on: `http://localhost:5173`
 
-## GRC Context & Decision Making
+## Assumptions & Limitations
+- No authentication or user roles are implemented
+- SQLite is used for simplicity and local storage
+- The application is intended for demonstration purposes, not production use
+- UI focuses on clarity over design aesthetics
 
-In a real-world GRC environment, risk assessments are the foundation of **Security Governance**. 
-This tool supports the **NIST SP 800-30** framework for risk assessments by:
-- Providing a structured way to identify and prioritize risks.
-- Allowing decision-makers to visualize the "Risk Frontier" using the heatmap.
-- Enabling resource allocation based on severity (Critical risks first).
-- Supporting compliance audits by maintaining a persistent record (Risk Register).
+## GRC Relevance
+This tool aligns with GRC principles by:
+- Identifying and assessing risks
+- Maintaining a structured risk register
+- Supporting monitoring through dashboards
+- Enabling informed decision-making via visual analysis
 
-## Assumptions and Limitations
+## Conclusion
+The Risk Assessment Tool successfully fulfills all assignment deliverables by providing:
+- Correct risk calculations
+- Persistent data storage
+- A functional dashboard
+- Visual risk analysis through a heatmap
 
-- **No Authentication**: This is a simplified tool without user login.
-- **Local Persistence**: Data is stored in a local SQLite file.
-- **Fixed Matrix**: The 5x5 matrix is hardcoded as per standard GRC practices.
-# grc-filter-task-Chandril-Das-
+The project demonstrates a practical understanding of risk modeling, full-stack development, and data-driven decision support.
