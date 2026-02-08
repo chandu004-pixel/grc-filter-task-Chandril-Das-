@@ -27,6 +27,12 @@ This is the React-based frontend for the GRC Risk Assessment Tool.
    ```
 4. Open your browser to: `http://localhost:5173`.
 
+## 🌐 Deployment
+The frontend is deployed on **Vercel**.
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **VITE_API_URL**: Set this environment variable to your backend API URL.
+
 ## 📂 Component Structure
 - `App.jsx`: Main orchestration and state management.
 - `RiskForm.jsx`: Handles data entry and real-time validation.

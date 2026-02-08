@@ -138,10 +138,26 @@ npm run dev
 ```
 Frontend runs on: `http://localhost:5173`
 
+## Deployment
+
+### Backend (Render)
+The backend is deployed as a **Web Service** on Render.
+- **Root Directory**: `backend`
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `uvicorn app:app --host 0.0.0.0 --port 10000`
+
+### Frontend (Vercel)
+The frontend is deployed as a **Static Site** on Vercel.
+- **Root Directory**: `frontend`
+- **Framework Preset**: `Vite`
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Environment Variables**: `VITE_API_URL` pointing to the Render backend URL.
+
 ## Assumptions & Limitations
-- The application is intended to be run locally as per assignment requirements. Deployment was not required.
+- The application is deployed for demonstration purposes.
 - No authentication or user roles are implemented
-- SQLite is used for simplicity and local storage
+- SQLite is used for simplicity and local storage (Note: Data on Render free tier is ephemeral and may reset on restarts).
 - The application is intended for demonstration purposes, not production use
 - UI focuses on clarity over design aesthetics
 
